@@ -1,0 +1,307 @@
+{
+  "neighborhood": {
+    "id": "hackathon-demo",
+    "timezone": "America/New_York",
+    "simulation_start": "2026-05-12T00:00:00-04:00",
+    "simulation_hours": 48
+  },
+  "houses": [
+    {
+      "house_id": "H1",
+      "archetype": "retired_couple",
+      "occupants": 2,
+      "base_load_kw": [
+        0.33,
+        0.369,
+        0.365,
+        0.336,
+        0.35,
+        0.397,
+        0.563,
+        0.889,
+        0.888,
+        0.74,
+        0.738,
+        0.692,
+        0.781,
+        0.69,
+        0.694,
+        0.828,
+        1.052,
+        1.66,
+        1.809,
+        1.434,
+        1.155,
+        0.906,
+        0.642,
+        0.392,
+        0.334,
+        0.346,
+        0.324,
+        0.334,
+        0.347,
+        0.4,
+        0.527,
+        0.813,
+        0.907,
+        0.795,
+        0.676,
+        0.646,
+        0.791,
+        0.757,
+        0.716,
+        0.76,
+        1.187,
+        1.639,
+        1.597,
+        1.509,
+        1.294,
+        0.93,
+        0.642,
+        0.395
+      ],
+      "shiftable_loads": [
+        {
+          "load_id": "H1-EV-D0",
+          "type": "ev_charging",
+          "power_kw": 7.2,
+          "duration_hours": 3.5,
+          "preemptible": false,
+          "earliest_start": "2026-05-12T18:00:00-04:00",
+          "latest_finish": "2026-05-13T07:30:00-04:00",
+          "default_start": "2026-05-12T18:30:00-04:00",
+          "private_context": {
+            "reason": "Evening drive to visit grandchildren",
+            "flexibility_score": 0.7
+          }
+        },
+        {
+          "load_id": "H1-LAUNDRY-D0",
+          "type": "washer_dryer",
+          "power_kw": 2.5,
+          "duration_hours": 1.75,
+          "preemptible": false,
+          "earliest_start": "2026-05-12T07:00:00-04:00",
+          "latest_finish": "2026-05-12T22:00:00-04:00",
+          "default_start": "2026-05-12T19:15:00-04:00",
+          "private_context": {
+            "reason": "After dinner laundry for weekend",
+            "flexibility_score": 0.5
+          }
+        },
+        {
+          "load_id": "H1-WH-D0",
+          "type": "water_heater",
+          "power_kw": 1.5,
+          "duration_hours": 1.2,
+          "preemptible": false,
+          "earliest_start": "2026-05-12T05:00:00-04:00",
+          "latest_finish": "2026-05-12T22:00:00-04:00",
+          "default_start": "2026-05-12T20:00:00-04:00",
+          "private_context": {
+            "reason": "Evening showers for both",
+            "flexibility_score": 0.4
+          }
+        }
+      ]
+    },
+    {
+      "house_id": "H2",
+      "archetype": "young_family",
+      "occupants": 4,
+      "base_load_kw": [
+        0.601,
+        0.6,
+        0.52,
+        0.523,
+        0.59,
+        0.726,
+        1.222,
+        1.968,
+        1.708,
+        1.139,
+        0.993,
+        0.993,
+        1.177,
+        1.17,
+        1.305,
+        1.662,
+        2.476,
+        3.172,
+        3.4,
+        2.764,
+        2.074,
+        1.553,
+        1.114,
+        0.68,
+        0.549,
+        0.595,
+        0.562,
+        0.565,
+        0.536,
+        0.647,
+        1.157,
+        1.912,
+        1.683,
+        1.209,
+        1.007,
+        0.997,
+        1.265,
+        1.247,
+        1.307,
+        1.64,
+        2.407,
+        3.296,
+        3.35,
+        3.091,
+        2.406,
+        1.589,
+        1.166,
+        0.724
+      ],
+      "shiftable_loads": [
+        {
+          "load_id": "H2-EV-D0",
+          "type": "ev_charging",
+          "power_kw": 7.2,
+          "duration_hours": 3.8,
+          "preemptible": false,
+          "earliest_start": "2026-05-12T18:00:00-04:00",
+          "latest_finish": "2026-05-13T07:30:00-04:00",
+          "default_start": "2026-05-12T19:00:00-04:00",
+          "private_context": {
+            "reason": "Family trip to the beach tomorrow",
+            "flexibility_score": 0.8
+          }
+        },
+        {
+          "load_id": "H2-LAUNDRY-D0",
+          "type": "washer_dryer",
+          "power_kw": 2.5,
+          "duration_hours": 2.0,
+          "preemptible": false,
+          "earliest_start": "2026-05-12T07:00:00-04:00",
+          "latest_finish": "2026-05-12T22:00:00-04:00",
+          "default_start": "2026-05-12T18:45:00-04:00",
+          "private_context": {
+            "reason": "Cleaning up after kids' soccer practice",
+            "flexibility_score": 0.6
+          }
+        },
+        {
+          "load_id": "H2-WH-D0",
+          "type": "water_heater",
+          "power_kw": 1.5,
+          "duration_hours": 1.0,
+          "preemptible": false,
+          "earliest_start": "2026-05-12T05:00:00-04:00",
+          "latest_finish": "2026-05-12T22:00:00-04:00",
+          "default_start": "2026-05-12T19:30:00-04:00",
+          "private_context": {
+            "reason": "Hot water for bedtime baths",
+            "flexibility_score": 0.5
+          }
+        }
+      ]
+    },
+    {
+      "house_id": "H3",
+      "archetype": "wfh_single",
+      "occupants": 1,
+      "base_load_kw": [
+        0.244,
+        0.257,
+        0.25,
+        0.259,
+        0.26,
+        0.277,
+        0.431,
+        0.672,
+        0.776,
+        0.855,
+        1.009,
+        0.931,
+        0.941,
+        0.931,
+        0.956,
+        0.843,
+        0.955,
+        1.125,
+        1.109,
+        1.015,
+        0.83,
+        0.593,
+        0.487,
+        0.345,
+        0.247,
+        0.236,
+        0.27,
+        0.254,
+        0.264,
+        0.316,
+        0.484,
+        0.68,
+        0.794,
+        0.935,
+        0.927,
+        1.0,
+        0.947,
+        0.875,
+        0.881,
+        0.852,
+        1.005,
+        1.052,
+        1.127,
+        0.946,
+        0.808,
+        0.626,
+        0.456,
+        0.345
+      ],
+      "shiftable_loads": [
+        {
+          "load_id": "H3-EV-D0",
+          "type": "ev_charging",
+          "power_kw": 7.2,
+          "duration_hours": 3.2,
+          "preemptible": false,
+          "earliest_start": "2026-05-12T18:00:00-04:00",
+          "latest_finish": "2026-05-13T07:30:00-04:00",
+          "default_start": "2026-05-12T20:00:00-04:00",
+          "private_context": {
+            "reason": "Charging after remote work day",
+            "flexibility_score": 0.9
+          }
+        },
+        {
+          "load_id": "H3-LAUNDRY-D0",
+          "type": "washer_dryer",
+          "power_kw": 2.5,
+          "duration_hours": 1.6,
+          "preemptible": false,
+          "earliest_start": "2026-05-12T07:00:00-04:00",
+          "latest_finish": "2026-05-12T22:00:00-04:00",
+          "default_start": "2026-05-12T19:45:00-04:00",
+          "private_context": {
+            "reason": "Laundry before weekend outing",
+            "flexibility_score": 0.7
+          }
+        },
+        {
+          "load_id": "H3-WH-D0",
+          "type": "water_heater",
+          "power_kw": 1.5,
+          "duration_hours": 1.3,
+          "preemptible": false,
+          "earliest_start": "2026-05-12T05:00:00-04:00",
+          "latest_finish": "2026-05-12T22:00:00-04:00",
+          "default_start": "2026-05-12T18:15:00-04:00",
+          "private_context": {
+            "reason": "Evening cooking and dishwashing",
+            "flexibility_score": 0.6
+          }
+        }
+      ]
+    }
+  ]
+}
