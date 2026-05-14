@@ -150,15 +150,29 @@ Provide:
      (e.g. early morning departures, school runs) so houses prioritize them
      next round. Leave empty if nothing is critical."""
 
-        response = await self.client.chat(
-            model=self.model,
-            messages=[
-                {"role": "system", "content": SYSTEM_PROMPT},
-                {"role": "user", "content": user_prompt},
-            ],
-            format=CoordinatorMessage.model_json_schema(),
-            options={"temperature": 0.4},
-        )
+        import asyncio
+        last_err: Exception | None = None
+        response = None
+        for attempt in range(3):
+            try:
+                response = await self.client.chat(
+                    model=self.model,
+                    messages=[
+                        {"role": "system", "content": SYSTEM_PROMPT},
+                        {"role": "user", "content": user_prompt},
+                    ],
+                    format=CoordinatorMessage.model_json_schema(),
+                    options={"temperature": 0.4},
+                )
+                break
+            except Exception as e:
+                last_err = e
+                await asyncio.sleep(2.0 * (attempt + 1))
+        if response is None:
+            return CoordinatorMessage(
+                message=f"(coordinator unreachable: {type(last_err).__name__}; continuing)",
+                flagged_loads=[],
+            )
         cleaned = _strip_to_json(response.message.content)
         obj = _normalize_coord(json.loads(cleaned))
         cm = CoordinatorMessage.model_validate(obj)

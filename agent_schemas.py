@@ -40,6 +40,23 @@ class CoordinatorMessage(BaseModel):
     )
 
 
+class SwapResponse(BaseModel):
+    """Reply when a house agent is asked to accept a proposed swap."""
+    accept: bool
+    rationale: str = Field(default="")
+
+
+class SwapEvent(BaseModel):
+    """A swap that was actually applied (for the transcript)."""
+    load_id: str
+    house_id: str
+    from_hour: float
+    to_hour: float
+    accepted: bool
+    rationale: str
+    reduced_peak_kw: float
+
+
 # ---------- Shared state and transcript ----------
 
 @dataclass
@@ -82,8 +99,15 @@ class Transcript(BaseModel):
     before: dict[str, str]           # default schedule, ISO timestamps
     before_peak_kw: float
     before_peak_hour: int
+    before_cost_usd: float = 0.0
+    before_co2_kg: float = 0.0
     rounds: list[TranscriptRound]
+    swaps: list[SwapEvent] = Field(default_factory=list)
     final: dict[str, str]
     final_peak_kw: float
     final_peak_hour: int
+    final_cost_usd: float = 0.0
+    final_co2_kg: float = 0.0
     peak_reduction_pct: float
+    cost_savings_usd: float = 0.0
+    co2_savings_kg: float = 0.0
