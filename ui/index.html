@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HEMS · Neighborhood Energy Coordination</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT,WONK@9..144,300..900,0..100,0..1&family=JetBrains+Mono:wght@200..800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <script src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js"></script>
+</head>
+<body>
+  <div class="scanlines"></div>
+
+  <header class="masthead">
+    <div class="masthead-left">
+      <div class="logo">HEMS</div>
+      <div class="kicker">Vol. I · No. 1</div>
+    </div>
+    <div class="masthead-center">
+      <h1 class="title">A Neighborhood<br/><em>Negotiates Its Load</em></h1>
+      <div class="dek">Three households · Ten days · Multi-agent energy coordination, running on local Ollama</div>
+    </div>
+    <div class="masthead-right">
+      <div class="dateline" id="dateline">— · — · —</div>
+      <div class="clock-label">CLOCK</div>
+      <div class="clock" id="clock">Day 1 · 00:00</div>
+    </div>
+  </header>
+
+  <section class="stats">
+    <div class="stat stat-before">
+      <div class="stat-label">Peak before coordination</div>
+      <div class="stat-value" id="peak-before">— kW</div>
+      <div class="stat-meta" id="peak-before-when">—</div>
+    </div>
+    <div class="stat stat-arrow"><svg viewBox="0 0 60 60"><path d="M5 30 L50 30 M40 18 L52 30 L40 42" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="square"/></svg></div>
+    <div class="stat stat-after">
+      <div class="stat-label">Peak after coordination</div>
+      <div class="stat-value" id="peak-after">— kW</div>
+      <div class="stat-meta" id="peak-after-when">—</div>
+    </div>
+    <div class="stat stat-delta">
+      <div class="stat-label">Reduction</div>
+      <div class="stat-value" id="peak-reduction">— %</div>
+      <div class="stat-meta">Headline metric</div>
+    </div>
+  </section>
+
+  <section class="chart-section">
+    <div class="section-header">
+      <span class="section-marker">01</span>
+      <h2>Aggregate Neighborhood Load</h2>
+      <span class="section-sub">240 hours · sum of all three houses · before vs after</span>
+    </div>
+    <div class="chart-wrap">
+      <svg id="agg-chart" preserveAspectRatio="none"></svg>
+      <div class="legend">
+        <span class="legend-item legend-before"><span class="swatch"></span>Before · uncoordinated</span>
+        <span class="legend-item legend-after"><span class="swatch"></span>After · coordinated</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="houses">
+    <div class="section-header">
+      <span class="section-marker">02</span>
+      <h2>The Houses</h2>
+      <span class="section-sub">Each runs an Ollama-driven agent · all three negotiate in parallel each round</span>
+    </div>
+    <div class="house-grid" id="house-grid"></div>
+  </section>
+
+  <section class="coordinator">
+    <div class="section-header">
+      <span class="section-marker">03</span>
+      <h2>The Coordinator</h2>
+      <span class="section-sub">The voice that brokers prices · narrates each round</span>
+    </div>
+    <blockquote class="pull-quote" id="coord-quote">
+      <span class="quote-mark">“</span>
+      <span class="quote-body" id="coord-body">Loading negotiation transcript…</span>
+      <span class="quote-mark close">”</span>
+      <footer class="quote-attribution" id="coord-attr">— Coordinator, Round 0</footer>
+    </blockquote>
+    <div class="round-pager" id="round-pager"></div>
+  </section>
+
+  <section class="controls-section">
+    <div class="controls">
+      <button id="play-btn" class="play-btn" aria-label="Play / Pause">
+        <svg id="play-icon" viewBox="0 0 24 24" width="22" height="22"><polygon points="6,4 20,12 6,20" fill="currentColor"/></svg>
+        <svg id="pause-icon" viewBox="0 0 24 24" width="22" height="22" style="display:none"><rect x="5" y="4" width="5" height="16" fill="currentColor"/><rect x="14" y="4" width="5" height="16" fill="currentColor"/></svg>
+      </button>
+      <div class="scrubber-wrap">
+        <input id="scrub" type="range" min="0" max="239" value="0" step="0.25"/>
+        <div class="day-ticks" id="day-ticks"></div>
+      </div>
+      <div class="speed-toggle" id="speed-toggle">
+        <button data-speed="1" class="active">1×</button>
+        <button data-speed="2">2×</button>
+        <button data-speed="5">5×</button>
+        <button data-speed="10">10×</button>
+      </div>
+    </div>
+  </section>
+
+  <footer class="colophon">
+    <span class="col-left">Built with local Ollama (gpt-oss:120b) · D3.js · vanilla JS</span>
+    <span class="col-right">A coordinated grid is a quieter grid.</span>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>
